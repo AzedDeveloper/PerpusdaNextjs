@@ -4,7 +4,7 @@ import Kategori from "@/components/Kategori";
 import { getDataKategori } from '@/lib/data';
 
 export default async function Home() {
-  getDataKategori().length === 0 && await fetchKategori();
+  //getDataKategori().length === 0 && await fetchKategori();
 
   return (
     <main className="px-[5%] w-screen flex flex-col pt-16">
