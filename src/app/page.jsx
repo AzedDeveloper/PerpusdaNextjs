@@ -4,11 +4,11 @@ import Kategori from "@/components/Kategori";
 import { getDataKategori } from '@/lib/data';
 
 export default async function Home() {
-  await fetchKategori();
+  getDataKategori().length === 0 && await fetchKategori();
 
   return (
     <main className="px-[5%] w-screen flex flex-col pt-16">
-      <div className="text-sm font-bold text-center">Pilih Topik Yang Anda Suka</div>
+      <div className="text-sm font-bold text-center">Pilih Topik Yang Anda Suka {getDataKategori().length}</div>
       <Kategori data={getDataKategori()}/>
       <div className="text-xl font-bold">Koleksi Terpopuler</div>
       <div className="text-sm">Koleksi Populer untuk Anda</div>

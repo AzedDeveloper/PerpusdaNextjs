@@ -1,5 +1,6 @@
 import mysql from 'mysql2/promise'
 import { Pool } from 'pg'
+let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
 
 /*
 const pool = mysql.createPool({
@@ -8,13 +9,12 @@ const pool = mysql.createPool({
     password: process.env.DB_PASS,
     database: process.env.DB_SCHEMA,
     waitForConnections: true
-})*/
+})
+*/
+
 const pool = new Pool({
-    host: "localhost",
-    port: "5432",
-    user: "postgres",
-    password: "Tahulzen15_",
-    database: "db_perpusda"
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
 })
 
 export default pool
