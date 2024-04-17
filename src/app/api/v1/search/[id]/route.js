@@ -19,8 +19,9 @@ export async function GET(req, {params}) {
 
 export async function DELETE(req, {params}) {
   try {
-    const db = await pool.getConnection();
-    const data = await db.execute("SELECT * FROM tb_buku WHERE id_buku = '"+params.id+"'");
+    const db = await pool.connect();
+    const result = await db.query("SELECT * FROM tb_buku WHERE id_buku = '"+params.id+"'");
+    const data = result.rows;
     db.release();
     deleteData(params.id);
     return NextResponse.json({"status": 200, "message": data});

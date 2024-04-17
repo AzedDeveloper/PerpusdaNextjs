@@ -15,11 +15,12 @@ export async function GET(req) {
 
 export async function POST() {
   try {
-    const db = await pool.getConnection();
-    const [rows] = await db.execute('SELECT id_buku, tb_author.id_author, tb_author.nama as author, tb_kategori.id_kategori, tb_kategori.nama as kategori, judul, views, cover, rilis FROM tb_buku INNER JOIN tb_author ON tb_author.id_author = tb_buku.id_author INNER JOIN tb_kategori ON tb_kategori.id_kategori = tb_buku.id_kategori');
+    const db = await pool.connect();
+    const result = await db.query('SELECT id_buku, tb_author.id_author, tb_author.nama as author, tb_kategori.id_kategori, tb_kategori.nama as kategori, judul, views, cover, rilis FROM tb_buku INNER JOIN tb_author ON tb_author.id_author = tb_buku.id_author INNER JOIN tb_kategori ON tb_kategori.id_kategori = tb_buku.id_kategori');
+    const data = result.rows;
     db.release();
-    addAllData(rows);
-    return NextResponse.json({"status": 200, rows});
+    addAllData(data);
+    return NextResponse.json({"status": 200, data});
   } catch (errors) {
     return NextResponse.json({
       error: errors
