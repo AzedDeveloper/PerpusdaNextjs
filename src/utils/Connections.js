@@ -1,6 +1,5 @@
 import mysql from 'mysql2/promise'
 import { Pool } from 'pg'
-let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
 
 /*
 const pool = mysql.createPool({
