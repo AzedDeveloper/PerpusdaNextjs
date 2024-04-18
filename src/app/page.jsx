@@ -1,66 +1,52 @@
 import React from "react";
 import Kategori from "@/components/Kategori";
-import { getDataKategori } from '@/lib/data';
-import { BASE_API_URL } from '@/utils/constants';
-import Test from "@/components/Test";
-import { addAllDataKategori } from '@/lib/data';
-
-async function fetchKategori() {
-  console.log("KATEGORI FETCHING");
-  const res = await fetch(`${BASE_API_URL}/api/v1/kategori`, {
-    method: "GET", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors",
-    credentials: "same-origin",
-    next: { revalidate: 0 },
-  });
-  const result = await res.json();
-  addAllDataKategori(result.data);
-  return result.data;
-}
+import { getData, getDataKategori } from '@/lib/data';
+import { fetchKategori, fetchBuku } from '@/utils/Api';
+import ListBuku from "@/components/ListBuku";
+import { FaXTwitter, FaSquareFacebook, FaYoutube, FaInstagram } from "react-icons/fa6";
 
 export default async function Home() {
   getDataKategori().length == 0 && await fetchKategori();
+  getData().length == 0 && await fetchBuku();
 
   return (
-    <main className="px-[5%] w-screen flex flex-col pt-16">
-      <div className="text-sm font-bold text-center">Pilih Topik Yang Anda Suka</div>
-      <Kategori data={getDataKategori()}/>
-      <div className="text-xl font-bold">Koleksi Terpopuler</div>
-      <div className="text-sm">Koleksi Populer untuk Anda</div>
-      <div className="flex my-4 space-x-5 overflow-x-auto">
-        <div className="w-[15vw]">
-          <img src="https://cdn.gramedia.com/uploads/items/9789792281415_Gadis_Kretek___w150_hauto.jpg" className="w-[15vw]"/>
-          <div className="text-[.6rem] mt-3 leading-[.5rem]">Ratih Kumala</div>
-          <div className="font-medium text-sm">Gadis Kretek dan Selomerto</div>
+    <main className="w-screen pt-16 bg-[#f8fafc]">
+      <div className="px-[5%] flex flex-col">
+        <div className="text-sm font-bold text-center">Pilih Topik Yang Anda Suka</div>
+        <Kategori />
+        <div className="text-xl font-bold">Koleksi Terpopuler</div>
+        <div className="text-sm">Koleksi terpopuler untuk Anda</div>
+        <ListBuku populer/>
+        <div className="text-xl font-bold mt-6">Koleksi Terbaru</div>
+        <div className="text-sm">Koleksi terbaru untuk Anda</div>
+        <ListBuku terbaru/>
+      </div>
+      <div className="flex flex-col px-5 py-10 my-5 space-y-1 items-center bg-white w-screen border-gray-200 border-[1px]">
+        <div className="font-bold text-2xl">Selamat Membaca</div>
+        <div className="text-sm">Buku adalah jendela dunia di mana kita bisa melihat isi dunia tanpa melakukan perjalanan, hanya cukup membaca sebuah halaman</div>
+      </div>
+      <div className="px-[5%] flex space-x-5 my-5">
+        <div>
+          <iframe
+            width="600"
+            height="400"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?&q=Space+Needle,Seattle+WA">
+          </iframe>
         </div>
-        <div className="w-[15vw]">
-          <img src="https://cdn.gramedia.com/uploads/items/9789792281415_Gadis_Kretek___w150_hauto.jpg" className="w-[15vw]"/>
-          <div className="text-[.6rem] mt-3 leading-[.5rem]">Ratih Kumala</div>
-          <div className="font-medium text-sm">Gadis Kretek</div>
-        </div>
-        <div className="w-[15vw]">
-          <img src="https://cdn.gramedia.com/uploads/items/9789792281415_Gadis_Kretek___w150_hauto.jpg" className="w-[15vw]"/>
-          <div className="text-[.6rem] mt-3 leading-[.5rem]">Ratih Kumala</div>
-          <div className="font-medium text-sm">Gadis Kretek</div>
-        </div>
-        <div className="w-[15vw]">
-          <img src="https://cdn.gramedia.com/uploads/items/9789792281415_Gadis_Kretek___w150_hauto.jpg" className="w-[15vw]"/>
-          <div className="text-[.6rem] mt-3 leading-[.5rem]">Ratih Kumala</div>
-          <div className="font-medium text-sm">Gadis Kretek</div>
-        </div>
-        <div className="w-[15vw]">
-          <img src="https://cdn.gramedia.com/uploads/items/9789792281415_Gadis_Kretek___w150_hauto.jpg" className="w-[15vw]"/>
-          <div className="text-[.6rem] mt-3 leading-[.5rem]">Ratih Kumala</div>
-          <div className="font-medium text-sm">Gadis Kretek</div>
-        </div>
-        <div className="w-[15vw]">
-          <img src="https://cdn.gramedia.com/uploads/items/9789792281415_Gadis_Kretek___w150_hauto.jpg" className="w-[15vw]"/>
-          <div className="text-[.6rem] mt-3 leading-[.5rem]">Ratih Kumala</div>
-          <div className="font-medium text-sm">Gadis Kretek</div>
+        <div className="space-y-3">
+          <div className="font-medium text-xl">Perpustakaan Digital Arpusda Wonosobo</div>
+          <div className="text-sm">Perpustakaan Digital atau E-Book adalah inovasi dari Dinas Arpusda Wonosobo untuk membantu masyarakat Wonosobo dalam mengakses buku-buku digital melalui PC, Laptop dan smartphone.</div>
+          <div className="flex space-x-3">
+            <FaSquareFacebook size={30} />
+            <FaXTwitter size={30} />
+            <FaYoutube size={30} />
+            <FaInstagram size={30} />
+          </div>
         </div>
       </div>
-      <div className="text-xl font-bold mt-6">Koleksi Terpopuler</div>
-      <div className="text-sm">Koleksi Populer untuk Anda</div>
     </main>
   );
 }

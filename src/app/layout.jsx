@@ -3,6 +3,7 @@ import Header from "components/Header";
 import Carousel from "components/Carousel";
 import Search from "components/Search";
 import Body from "components/Body";
+import Footer from "components/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
         <Carousel />
         <Search />
         {children}
+        <Footer />
       </Body>
     </html>
   );

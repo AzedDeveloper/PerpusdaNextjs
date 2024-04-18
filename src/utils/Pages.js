@@ -1,7 +1,7 @@
 function pages () {
   return [
     {
-        name: 'Home',
+        name: 'Beranda',
         link: '/'
     },
     {
