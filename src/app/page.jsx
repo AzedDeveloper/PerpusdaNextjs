@@ -1,10 +1,24 @@
 import React from "react";
-import { fetchKategori } from "@/utils/Api";
 import Kategori from "@/components/Kategori";
 import { getDataKategori } from '@/lib/data';
+import { BASE_API_URL } from '@/utils/constants';
+
+async function fetchKategori() {
+  console.log("Fetch Kategori");
+  const res = await fetch(`${BASE_API_URL}/api/v1/kategori`, {
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+  });
+  return res.json();
+}
 
 export default async function Home() {
-  //getDataKategori().length === 0 && await fetchKategori();
+  if(!BASE_API_URL){
+    return null;
+  }
+  getDataKategori().length === 0 && await fetchKategori();
 
   return (
     <main className="px-[5%] w-screen flex flex-col pt-16">

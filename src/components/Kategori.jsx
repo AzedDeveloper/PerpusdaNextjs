@@ -7,7 +7,6 @@ import { AnimatePresence, motion, useMotionValueEvent } from 'framer-motion'
 const Kategori = ({data}) => {
   return (
     <>
-    
     <div className="hidden md:flex space-x-3 justify-center my-4">
         {
           data.length > 5 ? (
