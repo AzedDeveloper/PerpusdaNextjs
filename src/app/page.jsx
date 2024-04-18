@@ -4,7 +4,7 @@ import { getDataKategori } from '@/lib/data';
 import { BASE_API_URL } from '@/utils/constants';
 
 async function fetchKategori() {
-  console.log("Fetch Kategori");
+  console.log(BASE_API_URL);
   const res = await fetch(`${BASE_API_URL}/api/v1/kategori`, {
     method: "GET", // *GET, POST, PUT, DELETE, etc.
     mode: "cors",
@@ -15,9 +15,6 @@ async function fetchKategori() {
 }
 
 export default async function Home() {
-  if(!BASE_API_URL){
-    return null;
-  }
   getDataKategori().length === 0 && await fetchKategori();
 
   return (
