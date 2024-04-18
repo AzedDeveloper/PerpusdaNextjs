@@ -2,14 +2,15 @@ import React from "react";
 import Kategori from "@/components/Kategori";
 import { getDataKategori } from '@/lib/data';
 import { BASE_API_URL } from '@/utils/constants';
+import Test from "@/components/Test";
 
 async function fetchKategori() {
   console.log(BASE_API_URL);
   const res = await fetch(`${BASE_API_URL}/api/v1/kategori`, {
     method: "GET", // *GET, POST, PUT, DELETE, etc.
     mode: "cors",
-    cache: "no-cache",
     credentials: "same-origin",
+    next: { revalidate: 0 },
   });
   return res.json();
 }
@@ -23,6 +24,7 @@ export default async function Home() {
       <Kategori data={getDataKategori()}/>
       <div className="text-xl font-bold">Koleksi Terpopuler</div>
       <div className="text-sm">Koleksi Populer untuk Anda</div>
+      <Test data={getDataKategori()} />
       <div className="flex my-4 space-x-5 overflow-x-auto">
         <div className="w-[15vw]">
           <img src="https://cdn.gramedia.com/uploads/items/9789792281415_Gadis_Kretek___w150_hauto.jpg" className="w-[15vw]"/>
