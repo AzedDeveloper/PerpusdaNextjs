@@ -27,9 +27,12 @@ const ItemHeaderMobile = ({name, link, setMenu}) => {
         show: { opacity: 1, x: 0 }
     }
 
-    return <Link href={link} onClick={() => setMenu(false)}>
-        <motion.li variants={item} className={path == link ? 'text-4xl font-black' : 'text-4xl hover:font-black hover:cursor-pointer'}>{name}</motion.li>
-    </Link>
+    return <div>
+        <Link href={link} onClick={() => setMenu(false)}>
+            <motion.li variants={item} className={path == link ? 'text-4xl font-black' : 'text-4xl hover:font-black hover:cursor-pointer'}>{name}</motion.li>
+        </Link>
+        <div className='h-[.1rem] w-full bg-gray-300 mt-3'></div>
+    </div>
 }
 
 const Header = () => {
@@ -90,20 +93,25 @@ const Header = () => {
         </div>
         {
             menu && (
-                <div className='md:hidden pt-5 h-full flex flex-col justify-between'>
-                    <motion.ul variants={container} initial="hidden" animate="show" className='space-y-3 flex-1'>
+                <div className='md:hidden pt-5 h-full flex flex-col'>
+                    <motion.ul variants={container} initial="hidden" animate="show" className='space-y-3'>
                         {
                             pages().map((page, index) => (
-                                <>
                                 <ItemHeaderMobile key={index} name={page.name} link={page.link} setMenu={setMenu} />       
-                                <div className='h-[.1rem] w-full bg-gray-300'></div>
-                                </>
                             ))
                         }
+                        <div className='rounded-lg border-2 border-gray-200 mt-3 p-5 flex items-center space-x-3'>
+                            <div className='bg-black w-10 h-10 flex justify-center items-center rounded-full'>
+                                <MdPerson className='text-white w-6 h-6'/>
+                            </div>
+                            <div>
+                                <div className='font-medium'>Miftahulzen Al Asyari</div>
+                            </div>
+                            <div className='flex-1 flex justify-end'>
+                                <div className='text-white font-medium bg-blue-500 px-5 py-2 rounded-lg hover:cursor-pointer'>Profil</div>
+                            </div>
+                        </div>
                     </motion.ul>
-                    <div className=''>
-                        TEST
-                    </div>
                 </div>
             )
         }
