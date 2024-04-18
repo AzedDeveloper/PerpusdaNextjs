@@ -3,28 +3,30 @@ import Kategori from "@/components/Kategori";
 import { getDataKategori } from '@/lib/data';
 import { BASE_API_URL } from '@/utils/constants';
 import Test from "@/components/Test";
+import { addAllDataKategori } from '@/lib/data';
 
 async function fetchKategori() {
-  console.log(BASE_API_URL);
+  console.log("KATEGORI FETCHING");
   const res = await fetch(`${BASE_API_URL}/api/v1/kategori`, {
     method: "GET", // *GET, POST, PUT, DELETE, etc.
     mode: "cors",
     credentials: "same-origin",
     next: { revalidate: 0 },
   });
-  return res.json();
+  const result = await res.json();
+  addAllDataKategori(result.data);
+  return result.data;
 }
 
 export default async function Home() {
-  getDataKategori().length === 0 && await fetchKategori();
+  getDataKategori().length == 0 && await fetchKategori();
 
   return (
     <main className="px-[5%] w-screen flex flex-col pt-16">
-      <div className="text-sm font-bold text-center">Pilih Topik Yang Anda Suka {getDataKategori().length}</div>
+      <div className="text-sm font-bold text-center">Pilih Topik Yang Anda Suka</div>
       <Kategori data={getDataKategori()}/>
       <div className="text-xl font-bold">Koleksi Terpopuler</div>
       <div className="text-sm">Koleksi Populer untuk Anda</div>
-      <Test data={getDataKategori()} />
       <div className="flex my-4 space-x-5 overflow-x-auto">
         <div className="w-[15vw]">
           <img src="https://cdn.gramedia.com/uploads/items/9789792281415_Gadis_Kretek___w150_hauto.jpg" className="w-[15vw]"/>
