@@ -65,9 +65,9 @@ const Header = () => {
                         <ItemHeader key={index} name={page.name} link={page.link} />       
                     ))
                 }
-                <div className='w-8 h-8 bg-white rounded-full justify-center items-center flex mix-blend-screen'>
-                    <MdPerson className='text-black w-6 h-6'/>
-                </div>
+                <motion.div initial={{color: 'black', backgroundColor: 'white'}} animate={{color: pos > 20 ? 'white' : 'black', backgroundColor: pos > 20 ? 'black' : 'white'}} className='w-8 h-8 rounded-full justify-center items-center flex'>
+                    <MdPerson className='w-6 h-6'/>
+                </motion.div>
             </div>
             <div className='md:hidden flex bg-white w-8 h-8 justify-center items-center rounded-full'>
                 <svg onClick={() => setMenu(!menu)} viewBox='0 0 23 23' className='w-4 h-4 md:hidden'>

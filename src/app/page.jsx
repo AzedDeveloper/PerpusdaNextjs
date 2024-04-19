@@ -27,10 +27,9 @@ export default async function Home() {
       </div>
       <div className="px-[5%] flex flex-col md:flex-row md:space-x-5 my-5">
         <iframe
-          className="w-[90vw] h-[300px] md:h-[400px] md:w-[50vw] rounded-xl"
+          className="w-[90vw] h-[300px] md:h-[300px] md:w-[100vw] rounded-xl"
           loading="lazy"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
+          referrerPolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps/embed?&q=Space+Needle,Seattle+WA">
         </iframe>
         <div className="space-y-2 mt-3 md:mt-0">
