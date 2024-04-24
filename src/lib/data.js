@@ -1,7 +1,7 @@
 /* DATA BUKU */
 let data = [];
 export const getData = () => data;
-export const getById = (id) => data.find((d) => d.id_buku == id);
+export const getById = (id) => data.find((d) => d.isbn == id);
 export const addAllData = (d) => {
     data = d;
 }
