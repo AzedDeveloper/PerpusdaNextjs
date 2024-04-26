@@ -36,7 +36,7 @@ const ListBuku = ({populer= false, terbaru=false, all=false}) => {
                     return (
                         <Link href={`/buku/${item.isbn}`} key={indx} className="w-[20vw] hover:scale-105 hover:cursor-pointer">
                             <img src={item.cover} alt='cover' className="w-[20vw] h-[19rem] rounded-lg"/>
-                            <div className="text-[.6rem] mt-3 mb-1 leading-[.4rem] hover:cursor-pointer hover:font-medium">{item.author}</div>
+                            <Link href={`/author/${item.id_author}`} className="text-[.6rem] mt-3 mb-1 leading-[.4rem] hover:cursor-pointer hover:font-medium hover:text-blue-500">{item.author}</Link>
                             <div className="font-medium text-sm">{item.judul}</div>
                         </Link>
                     )
@@ -61,7 +61,7 @@ const ListBuku = ({populer= false, terbaru=false, all=false}) => {
                     return (
                         <Link href={`/buku/${item.isbn}`} key={indx} className="w-[25vw] hover:cursor-pointer">
                             <img src={item.cover} alt='cover' className="w-[25vw] h-46"/>
-                            <div className="text-[.6rem] mt-3 mb-1 leading-[.4rem] hover:cursor-pointer hover:font-medium">{item.author}</div>
+                            <Link href={`/author/${item.id_author}`} className="text-[.6rem] mt-3 mb-1 leading-[.4rem] hover:cursor-pointer hover:font-medium">{item.author}</Link>
                             <div className="font-medium text-xs">{item.judul}</div>
                         </Link>
                     )
