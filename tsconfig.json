@@ -25,6 +25,7 @@
       "@/components/*": ["./components/*"],
       "@/utils/*": ["./utils/*"],
       "@/lib/*": ["./lib/*"],
+      "@root/*": ["../*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts", "src/app/api/v1/search/route.js"],

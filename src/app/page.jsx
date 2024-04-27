@@ -6,6 +6,7 @@ import ListBuku from "@/components/ListBuku";
 import { FaXTwitter, FaSquareFacebook, FaYoutube, FaInstagram } from "react-icons/fa6";
 import useSwr from 'swr';
 import { BASE_API_URL } from '@/utils/constants';
+import { signIn } from '@root/auth'
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -16,6 +17,14 @@ export default async function Home() {
   return (
     <main className="w-screen pt-16 bg-[#f8fafc]">
       <div className="px-[5%] flex flex-col">
+        <form
+          action={async () => {
+            "use server"
+            await signIn("google")
+          }}
+        >
+          <button type="submit">Signin with Google</button>
+        </form>
         <div className="text-sm font-bold text-center">Pilih Topik Yang Anda Suka</div>
         <Kategori />
         <div className="md:text-xl font-bold mt-3">Koleksi Terpopuler</div>
